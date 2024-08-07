@@ -54,3 +54,19 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+
+
+document.getElementById('applyForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Hide the form and show the loading animation
+    document.getElementById('applyForm').classList.add('hidden');
+    document.getElementById('loadingAnimation').classList.remove('hidden');
+
+    // Simulate form submission and show the message
+    setTimeout(function() {
+        document.getElementById('loadingAnimation').classList.add('hidden');
+        document.getElementById('message').classList.remove('hidden');
+    }, 2000);
+});

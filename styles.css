@@ -108,8 +108,77 @@ nav ul li a:hover::after {
 }
 
 .btn:hover {
-    background: #555;
+    background: #00bfa5;
+    color: #333;
+    font-weight: bold;
     transition: background-color 0.3s;
+}
+
+form {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:focus,
+button:active {
+    outline: none;
+}
+
+button.hidden {
+    display: none;
+}
+
+/* Loading Animation */
+#loadingAnimation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.circle {
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    background-color: #00bfa5;
+    border-radius: 50%;
+    animation: bounce 1.2s infinite ease-in-out;
+}
+
+.circle:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.circle:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
 }
 
 #programs, #about, #contact {
@@ -190,6 +259,7 @@ li {
     justify-content: center;
     gap: 1rem;
     margin-top: 1rem;
+   
 }
 
 .contact-icons a {
@@ -204,6 +274,7 @@ li {
 .contact-icons img {
     width: 50px;
     height: 50px;
+   
 }
 
 footer {
@@ -254,7 +325,7 @@ hr {
     margin: 5rem auto;
     max-width: 800px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px #00bfa5;
 }
 
 #apply h2 {
@@ -329,6 +400,18 @@ hr {
     animation: moveDots 15s linear infinite;
 }
 
+.menu-icon {
+    display: none;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+span {
+    color: #00bfa5;
+}
+
 @keyframes moveDots {
     0% {
         transform: translateX(0) translateY(0);
@@ -338,95 +421,46 @@ hr {
     }
 }
 
-/* Media Queries */
-@media (max-width: 1024px) {
-    /* Styles for large tablets and small laptops */
-    #hero h1 {
-        font-size: 2.5rem;
-    }
-
-    #hero p {
-        font-size: 1.25rem;
-    }
-
-    .program {
-        width: calc(50% - 2rem);
-    }
-}
-
 @media (max-width: 768px) {
-    /* Styles for tablets and large phones */
     nav ul {
         flex-direction: column;
-        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #333;
+        width: 100%;
+        height: 100vh;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+
+    #menu-toggle:checked + label + ul {
+        transform: translateX(0);
     }
 
     nav ul li {
         margin: 1rem 0;
     }
 
-    nav ul.showing {
-        display: flex;
-    }
-
-    #menu-toggle:checked + .menu-icon + nav ul {
-        display: flex;
-    }
-
     .menu-icon {
         display: block;
+        cursor: pointer;
+        color: #fff;
     }
 
-    #hero h1 {
-        font-size: 2rem;
-    }
-
-    #hero p {
-        font-size: 1rem;
-    }
-
-    .program {
-        width: calc(100% - 2rem);
-    }
-}
-
-@media (max-width: 480px) {
-    /* Styles for small phones */
-    header {
-        padding: 1rem;
-    }
-
-    #logo {
-        font-size: 1.25rem;
-    }
-
-    nav ul li {
-        margin: 0.5rem 0;
-    }
-
-    #hero h1 {
+    .menu-icon::before {
+        content: "\2630";
         font-size: 1.5rem;
     }
 
-    #hero p {
-        font-size: 0.875rem;
+    .menu-icon:hover {
+        color: #00bfa5;
     }
+}
 
-    .btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.875rem;
-    }
-
-    #apply {
-        padding: 1rem;
-    }
-
-    #apply h2 {
-        font-size: 1.25rem;
-    }
-
-    #apply button {
-        padding: 0.75rem;
-        font-size: 0.875rem;
-    }
+.phone-number{
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    
 }
