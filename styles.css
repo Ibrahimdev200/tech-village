@@ -24,7 +24,9 @@ header {
     top: 0;
     z-index: 1000;
 }
-
+.hidden {
+    display: none;
+}
 #logo-link {
     text-decoration: none;
     color: #fff;
@@ -75,8 +77,8 @@ nav ul li a:hover::after {
 
 #hero {
     background: linear-gradient(
-        rgba(0, 0, 0, 0.74),
-        rgba(0, 0, 0, 0.863)
+        rgba(0, 0, 0, 0.253),
+        rgba(0, 0, 0, 0.144)
     ), url('images/home.jpeg') no-repeat center center/cover;
     height: 100vh;
     display: flex;
@@ -258,7 +260,7 @@ li {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-top: 1rem;
+   
    
 }
 
@@ -464,3 +466,4 @@ span {
     font-weight: bolder;
     
 }
+

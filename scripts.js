@@ -1,10 +1,27 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Dot animation setup
+    const dotContainer = document.getElementById('dot-container');
+
+    function createDots(count) {
+        for (let i = 0; i < count; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            dot.style.width = `${Math.random() * 10 + 5}px`;
+            dot.style.height = dot.style.width;
+            dot.style.top = `${Math.random() * 100}%`;
+            dot.style.left = `${Math.random() * 100}%`;
+            dot.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            dotContainer.appendChild(dot);
+        }
+    }
+
+    createDots(10);
+
+    // Handle form submission for all forms
     const forms = document.querySelectorAll('form');
     const successMessage = document.getElementById('successMessage');
     const errorMessage = document.getElementById('errorMessage');
-    const dotContainer = document.getElementById('dot-container');
 
-    // Handle form submission for all forms
     forms.forEach(form => {
         form.addEventListener('submit', function (event) {
             event.preventDefault();
@@ -28,45 +45,58 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Create dot animations
-    function createDots(count) {
-        for (let i = 0; i < count; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            dot.style.width = `${Math.random() * 10 + 5}px`;
-            dot.style.height = dot.style.width;
-            dot.style.top = `${Math.random() * 100}%`;
-            dot.style.left = `${Math.random() * 100}%`;
-            dot.style.animationDuration = `${Math.random() * 5 + 5}s`;
-            dotContainer.appendChild(dot);
-        }
-    }
-    
-    createDots(10);
-
-    // Toggle experience details
+    // Toggle experience details visibility
     const experienceSelect = document.getElementById('experience');
     const experienceDetails = document.getElementById('experience-details');
-    
+
     if (experienceSelect) {
         experienceSelect.addEventListener('change', function () {
             experienceDetails.style.display = this.value === 'yes' ? 'block' : 'none';
         });
     }
-});
 
+    // Contact form specific logic
+    const contactForm = document.getElementById('contactForm');
+    const sendMessageButton = document.getElementById('sendMessageButton');
+    const loadingAnimation = document.getElementById('loadingAnimation');
 
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (event) {
+            event.preventDefault();
 
-document.getElementById('applyForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+            // Show loading animation
+            loadingAnimation.classList.remove('hidden');
+            sendMessageButton.disabled = true;
 
-    // Hide the form and show the loading animation
-    document.getElementById('applyForm').classList.add('hidden');
-    document.getElementById('loadingAnimation').classList.remove('hidden');
+            // Gather form data
+            const formData = new FormData(contactForm);
 
-    // Simulate form submission and show the message
-    setTimeout(function() {
-        document.getElementById('loadingAnimation').classList.add('hidden');
-        document.getElementById('message').classList.remove('hidden');
-    }, 2000);
+            // Send form data to Formspree
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    contactForm.reset();
+                    successMessage.style.display = 'block';
+                    errorMessage.style.display = 'none';
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            })
+            .finally(() => {
+                // Hide loading animation
+                loadingAnimation.classList.add('hidden');
+                sendMessageButton.disabled = false;
+            });
+        });
+    }
 });
