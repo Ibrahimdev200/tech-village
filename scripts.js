@@ -99,4 +99,14 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    // Menu toggle functionality
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.querySelector('nav ul');
+
+    if (menuToggle) {
+        menuToggle.addEventListener('change', function () {
+            navMenu.style.transform = this.checked ? 'translateX(0)' : 'translateX(100%)';
+        });
+    }
 });

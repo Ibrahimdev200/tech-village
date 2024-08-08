@@ -24,9 +24,11 @@ header {
     top: 0;
     z-index: 1000;
 }
+
 .hidden {
     display: none;
 }
+
 #logo-link {
     text-decoration: none;
     color: #fff;
@@ -77,8 +79,8 @@ nav ul li a:hover::after {
 
 #hero {
     background: linear-gradient(
-        rgba(0, 0, 0, 0.253),
-        rgba(0, 0, 0, 0.144)
+        rgba(0, 0, 0, 0.589),
+        rgba(0, 0, 0, 0.582)
     ), url('images/home.jpeg') no-repeat center center/cover;
     height: 100vh;
     display: flex;
@@ -151,10 +153,6 @@ button.hidden {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-}
-
-.hidden {
-    display: none;
 }
 
 .circle {
@@ -260,8 +258,6 @@ li {
     display: flex;
     justify-content: center;
     gap: 1rem;
-   
-   
 }
 
 .contact-icons a {
@@ -276,7 +272,6 @@ li {
 .contact-icons img {
     width: 50px;
     height: 50px;
-   
 }
 
 footer {
@@ -289,8 +284,7 @@ footer {
     width: 100%;
 }
 
-/* about Page Styles */
-
+/* About Page Styles */
 #about {
     margin-top: 5rem;
     line-height: 2.5rem;
@@ -423,6 +417,13 @@ span {
     }
 }
 
+/* Media Queries for Responsive Design */
+@media (max-width: 1200px) {
+    .program {
+        width: calc(50% - 2rem);
+    }
+}
+
 @media (max-width: 768px) {
     nav ul {
         flex-direction: column;
@@ -453,17 +454,29 @@ span {
     .menu-icon::before {
         content: "\2630";
         font-size: 1.5rem;
+        
     }
 
     .menu-icon:hover {
         color: #00bfa5;
     }
+
+    .program {
+        width: calc(100% - 2rem);
+    }
 }
 
-.phone-number{
-    text-decoration: none;
-    color: black;
-    font-weight: bolder;
-    
-}
+@media (max-width: 480px) {
+    #hero h1 {
+        font-size: 2rem;
+    }
 
+    #hero p {
+        font-size: 1.2rem;
+    }
+
+    #apply {
+        padding: 1rem;
+        margin: 2rem auto;
+    }
+}
